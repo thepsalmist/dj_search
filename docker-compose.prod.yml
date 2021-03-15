@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  web_app:
+    build:
+      context: .
+      dockerfile: docker/dev/api/Dockerfile
+    container_name: web_app
+    volumes:
+      - ./app:/app
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    command: python manage.py runserver 0.0.0.0:8000
+    env_file:
+      - ./app/.env
+
+  db:
+    image: postgres:12.0-alpine
+    container_name: new_way_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file:
+      - ./app/.env
+
+    ports:
+      - 5435:5432
+
+volumes:
+  postgres_data:
+  static_volume:

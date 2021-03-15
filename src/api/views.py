@@ -55,4 +55,4 @@ def SearchFilterView(request):
 
     context = {"queryset": qs, "categories": categories}
 
-    return render(request, "core/bootstrap_form.html", context)
+    return render(request, "api/index.html", context)

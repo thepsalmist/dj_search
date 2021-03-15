@@ -17,7 +17,9 @@ services:
       - ./src/.env
 
   db:
-    image: postgres:12.0-alpine
+    build:
+      context: .
+      dockerfile: docker/dev/postgres/Dockerfile
     container_name: djangosearch
     volumes:
       - postgres_data:/var/lib/postgresql/data

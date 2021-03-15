@@ -3,4 +3,3 @@ USER=thealchemist
 PASSWORD=dbpassword
 POSR=5432
 HOST=localhost
-DATABASE_URL=postgres://thealchemist:dbpassword@db:5432/djangosearch

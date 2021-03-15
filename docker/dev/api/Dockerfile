@@ -9,8 +9,7 @@ ENV PYTHONUNBUFFERED 1
 RUN apk update \
     && apk add postgresql-dev gcc python3-dev musl-dev zlib-dev jpeg-dev
 
-# Create an app user
-RUN useradd --user-group --create-home --no-log-init --shell /bin/bash src
+RUN addgroup -S src && adduser -S src -G src
 
 ENV  APP_HOME=/home/src/api
 

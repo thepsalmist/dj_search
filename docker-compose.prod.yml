@@ -8,27 +8,40 @@ services:
     container_name: api
     volumes:
       - ./src:/src
-    ports:
-      - 8000:8000
+    expose:
+      - 8000
     depends_on:
       - db
-    command: python manage.py runserver 0.0.0.0:8000
+    command: docker/prod/api/gunicorn.sh
     env_file:
-      - ./src/.env
+      - ./src/.env.prod
 
   db:
     build:
       context: .
-      dockerfile: docker/dev/postgres/Dockerfile
+      dockerfile: docker/prod/postgres/Dockerfile
     container_name: djangosearch
     volumes:
       - postgres_data:/var/lib/postgresql/data
     env_file:
-      - ./src/.env
+      - ./src/.env.prod
 
+    expose:
+      - 5432
+  
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/prod/nginx/Dockerfile
     ports:
-      - 5435:5432
+      - 80:80
+    volumes:
+      - staticfiles:/home/src/staticfiles
+    depends_on:
+      - api
+
+
 
 volumes:
   postgres_data:
-  static_volume:
+  staticfiles:

@@ -28,9 +28,11 @@ RUN pip install -r requirements.txt
 # copy project
 COPY ./src $APP_HOME
 COPY ./docker/prod/api/entrypoint.sh $APP_HOME/entrypoint.sh
+COPY ./docker/prod/api/gunicorn.sh $APP_HOME/gunicorn.sh
 
 RUN chown -R src:src $APP_HOME
 RUN chmod +x $APP_HOME/entrypoint.sh
+RUN chmod +x $APP_HOME/gunicorn.sh
 
 #user
 USER src:src

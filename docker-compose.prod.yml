@@ -12,7 +12,7 @@ services:
       - 8000
     depends_on:
       - db
-    command: docker/prod/api/gunicorn.sh
+    command: /gunicorn.sh
     env_file:
       - ./src/.env.prod
 

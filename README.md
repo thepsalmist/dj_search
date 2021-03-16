@@ -6,7 +6,6 @@
 
 The Django Search and Results app is an application to demonstarte the use of Django, PostgreSQL, Gunicorn and Docker
 
-## User Stories and Behaviours
 
 ## User Stories
 
@@ -38,6 +37,7 @@ As a user, one should be able to do the following:
           $ docker-compose up -d --build
 
 -   To run the application in a production environment
+
           $ docker-compose -f docker-compose.prod.yml up-d --build
 
 ## Technologies Used
